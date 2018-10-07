@@ -1,11 +1,11 @@
-#include "game.h"
+#include "Game.h"
 
 Game* g_game = 0;	// our Game object
 
 int main(int argc, char* argv[]) {
 
 	g_game = new Game();
-	g_game->init("MiniProject", 100, 100, 1280, 640, false);
+	g_game->init("MiniProject", 100, 100, 700, 700, false);
 
 	while (g_game->running()) {
 

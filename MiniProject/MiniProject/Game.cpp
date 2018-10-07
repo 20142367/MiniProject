@@ -1,4 +1,13 @@
 #include "Game.h"
+#include "TextureManager.h"
+#include "GameObject.h"
+#include "Map.h"
+
+GameObject* player;
+
+Map* map;
+
+SDL_Renderer* Game::m_pRenderer = nullptr;
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
 
@@ -12,39 +21,16 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		}
 		m_bRunning = true;
 
-		//		SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
-		SDL_Surface* pTempSurface = IMG_Load("Assets/animate-alpha.png");
-		m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-		SDL_FreeSurface(pTempSurface);
-
-		SDL_Surface* pMapSurface = IMG_Load("Asstes/Map.jpg");
-		m_mapTexture = SDL_CreateTextureFromSurface(m_pRenderer, pMapSurface);
-		SDL_FreeSurface(pMapSurface);
-		
 		SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
-
-		m_sourceRectangle.w = 128;
-		m_sourceRectangle.h = 82;
-
-		m_srcMap.w = 1280;
-		m_srcMap.h = 640;
-
-		m_destinationRectangle.x = m_sourceRectangle.x = 0;
-		m_destinationRectangle.y = m_sourceRectangle.y = 0;
-		m_destinationRectangle.w = m_sourceRectangle.w;
-		m_destinationRectangle.h = m_sourceRectangle.h;
-
-		m_dstMap.x = m_srcMap.x = 0;
-		m_dstMap.y = m_srcMap.y = 0;
-		m_dstMap.w = m_srcMap.w;
-		m_dstMap.h = m_srcMap.h;
 	}
 	else
 	{
-		return false;
+		return false; 
 	}
 
+	player = new GameObject("Assets/animate-alpha.png", 0, 0);
 
+	map = new Map();
 
 	return true;
 }
@@ -55,15 +41,15 @@ void Game::render() {
 	// clear the renderer to the draw color
 	SDL_RenderClear(m_pRenderer);	// draw color로 render 지우기
 
-									// 원본 사각형과 대상 사각형의 위치와 크기에 따라 화면에 다르게 나타남
-	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+	player->render();
+	map->DrawMap();
 
 	SDL_RenderPresent(m_pRenderer);	// 화면 제시하기
 }
 
 void Game::update() {
 
-	m_sourceRectangle.x = 128 * int((SDL_GetTicks() / 100) % 6);
+	player->update();
 }
 
 void Game::clean() {
@@ -80,15 +66,17 @@ void Game::handleEvents() {
 	SDL_Event event;
 	if (SDL_PollEvent(&event)) {
 
+		/*
 		if (event.type == SDL_KEYDOWN)
 		{
 			switch (event.key.keysym.sym) {
 
 			case SDLK_RIGHT:
-				m_destinationRectangle.x += 5;
+				m_destinationRectangle.x += 15;
 				break;
 			case SDLK_LEFT:
-				m_destinationRectangle.x--;
+				m_destinationRectangle.x-=15;
+				m_pRendererFlip;
 				break;
 			case SDLK_UP:
 				m_destinationRectangle.y--;
@@ -100,6 +88,25 @@ void Game::handleEvents() {
 			case SDLK_ESCAPE:
 				m_bRunning = false;
 				break;
+			}
+		}*/
+
+		/*
+		if (event.type == SDL_KEYDOWN) {
+			if (event.key.keysym.sym == SDLK_RIGHT)	m_destinationRectangle.x += 15;
+			if (event.key.keysym.sym == SDLK_LEFT)	m_destinationRectangle.x -= 15;
+			if (event.key.keysym.sym == SDLK_UP)	m_destinationRectangle.y -= 15;
+			if (event.key.keysym.sym == SDLK_DOWN)	m_destinationRectangle.y += 15;
+			if (event.key.keysym.sym == SDLK_ESCAPE) {
+				SDL_Quit();
+				m_bRunning = false;
+			}
+		}
+		*/
+
+		if (event.type == SDL_MOUSEBUTTONDOWN) {
+			if (event.button.clicks) {
+				SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 			}
 		}
 		switch (event.type) {

@@ -21,18 +21,15 @@ public:
 	void clean();
 	bool running() { return m_bRunning; }
 
+	static SDL_Renderer* m_pRenderer;
+
 private:
 	SDL_Window * m_pWindow;
-	SDL_Renderer* m_pRenderer;
 	SDL_RendererFlip* m_pRendererFlip;
-	SDL_Texture* m_pTexture;	// the new SDL_Texture variable
-	SDL_Texture* m_mapTexture;
 
-	SDL_Rect m_sourceRectangle;	// 캐릭터 사각형
-	SDL_Rect m_destinationRectangle;	// 대상 사각형
-
-	SDL_Rect m_srcMap;	// 맵 사각형
-	SDL_Rect m_dstMap;	
+	string state = "";
 
 	bool m_bRunning;
 };
+
+//
