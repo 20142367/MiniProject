@@ -28,7 +28,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		return false; 
 	}
 
-	player = new GameObject("Assets/animate-alpha.png", 0, 0);
+	player = new GameObject("Assets/animate-alpha.png", 0, 0, 128, 82);
 
 	map = new Map();
 
@@ -50,6 +50,7 @@ void Game::render() {
 void Game::update() {
 
 	player->update();
+//	player = 128 * ((SDL_GetTicks() / 100) % 6);
 }
 
 void Game::clean() {

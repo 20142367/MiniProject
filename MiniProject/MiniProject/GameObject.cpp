@@ -1,12 +1,15 @@
 #include "GameObject.h"
 #include "TextureManager.h"
 
-GameObject::GameObject(const char* texturesheet, int x, int y) {
+GameObject::GameObject(const char* texturesheet, int x, int y, int w, int h) {
 	
 	objTexture = TextureManager::LoadTexture(texturesheet);
 
 	xpos = x;
 	ypos = y;
+
+	width = w;
+	height = h;
 
 }
 
@@ -17,8 +20,8 @@ void GameObject::update() {
 
 	dst.x = xpos;
 	dst.y = ypos;
-	dst.w = src.w * 2;
-	dst.h = src.h * 2;
+	dst.w = src.w = width;
+	dst.h = src.h = height;
 }
 
 void GameObject::render() {

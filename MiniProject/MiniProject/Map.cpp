@@ -2,14 +2,27 @@
 #include "TextureManager.h"
 #include "Game.h"
 
-int lvl1[7][7] = {
-	{ 0, 0, 0, 0, 0, 0, 0 },
-	{ 0, 1, 2, 2, 2, 2, 0 },
-	{ 0, 2, 2, 2, 2, 1, 0 },
-	{ 0, 2, 2, 2, 2, 2, 0 },
-	{ 0, 2, 2, 1, 2, 2, 0 },
-	{ 0, 2, 2, 1, 2, 1, 0 },
-	{ 0, 0, 0, 0, 0, 0, 0 }
+int lvl1[20][30] = {
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 };
 
 Map::Map() {
@@ -18,18 +31,24 @@ Map::Map() {
 	bomb = TextureManager::LoadTexture("Assets/bomb.png");
 	empty = TextureManager::LoadTexture("Assets/empty.png");
 
+
+	sky = TextureManager::LoadTexture("Assets/sky.png");
+	leaf = TextureManager::LoadTexture("Assets/leaf.png");
+	tree = TextureManager::LoadTexture("Assets/tree.png");
+	cloud = TextureManager::LoadTexture("Assets/cloud.png");
+
 	LoadMap(lvl1);
 
 	src.x = src.y = 0;
-	src.w = dst.w = 100;
-	src.h = dst.h = 100;
+	src.w = dst.w = 25;
+	src.h = dst.h = 25;
 }
 
-void Map::LoadMap(int arr[7][7])	{
+void Map::LoadMap(int arr[20][30])	{
 	
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < 20; i++) {
 
-		for (int k = 0; k < 7; k++) {
+		for (int k = 0; k < 30; k++) {
 
 			map[i][k] = arr[i][k];
 		}
@@ -38,16 +57,17 @@ void Map::LoadMap(int arr[7][7])	{
 
 void Map::DrawMap()	{
 
+	/*
 	int type = 0;
 
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < 20; i++) {
 
-		for (int k = 0; k < 7; k++) {
+		for (int k = 0; k < 30; k++) {
 
 			type = map[i][k];
 
-			dst.x = k * 100;
-			dst.y = i * 100;
+			dst.x = k * 25;
+			dst.y = i * 25;
 
 			switch (type)
 			{
@@ -63,11 +83,27 @@ void Map::DrawMap()	{
 				TextureManager::Draw(empty, src, dst);
 				break;
 
+			case 's':
+				TextureManager::Draw(sky, src, dst);
+				break;
+
+			case 'l':
+				TextureManager::Draw(leaf, src, dst);
+				break;
+
+			case 't':
+				TextureManager::Draw(tree, src, dst);
+				break;
+
+			case 'c':
+				TextureManager::Draw(cloud, src, dst);
+				break;
+
 			default:
 				break;
 			}
 		}
-	}
+	}*/
 }
 
 void Map::handleEvents() {
